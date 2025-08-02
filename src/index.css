@@ -1,0 +1,315 @@
+:root {
+  --primary-color: #1890ff;
+  --secondary-color: #096dd9;
+  --light-bg: #f0f9ff;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.site-layout-background {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background: var(--primary-color);
+  padding: 0 24px;
+  height: 64px;
+}
+
+.logo {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 24px;
+}
+
+.ant-btn {
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.ant-btn-default {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ant-btn-default:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.ant-layout-sider {
+  background: #fff;
+}
+
+.ant-layout-content {
+  background: #f0f2f5;
+}
+
+.ant-card {
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+}
+
+.ant-card-head {
+  background: var(--light-bg);
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.ant-card-head-title {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.ant-btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.ant-btn-primary:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.ant-input:focus, .ant-input-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-list-item:hover {
+  background-color: var(--light-bg);
+}
+
+.ant-tabs-tab-active {
+  color: var(--primary-color);
+}
+
+.ant-tabs-ink-bar {
+  background: var(--primary-color);
+}
+
+/* 新增动画和样式 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardHover {
+  from { transform: translateY(0); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+  to { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); }
+}
+
+.card-animation {
+  animation: fadeIn 0.5s ease-out forwards;
+  transition: all 0.3s ease;
+}
+
+.card-animation:hover {
+  animation: cardHover 0.3s ease-out forwards;
+}
+
+.list-item-animation {
+  transition: all 0.2s ease;
+}
+
+.list-item-animation:hover {
+  transform: translateX(5px);
+}
+
+.tree-node-animation {
+  transition: all 0.2s ease;
+  padding: 8px 0;
+}
+
+.tree-node-animation:hover {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+/* 更新现有样式 */
+.ant-layout {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+}
+
+.header {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ant-card {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.ant-card:hover {
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.12);
+}
+
+.search-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.graph-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.graph-panel {
+  flex: 1;
+  transition: all 0.3s ease;
+}
+
+.graph-panel:hover {
+  transform: translateY(-2px);
+}
+
+.l2-graph-content {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 4px;
+  border-left: 3px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.l2-graph-content:hover {
+  background: #f0f9ff;
+}
+
+/* 新增动画和样式 */
+@keyframes rocketSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.app-layout {
+  background: #f5f7fa;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  padding: 0 24px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: white;
+  margin-right: 12px;
+  transition: all 0.3s;
+}
+
+.logo-text {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.app-sider {
+  background: #001529 !important;
+  box-shadow: 2px 0 8px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.sider-logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-menu {
+  border-right: none !important;
+  padding: 8px 0;
+}
+
+.menu-item {
+  margin: 4px 8px !important;
+  border-radius: 4px !important;
+  transition: all 0.3s !important;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.menu-item.ant-menu-item-selected {
+  background: rgba(24, 144, 255, 0.9) !important;
+}
+
+.app-content-layout {
+  transition: all 0.2s;
+  margin-left: 0;
+}
+
+.app-content {
+  margin: 16px;
+  padding: 24px;
+  min-height: 280px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.content-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+  .app-sider {
+    position: fixed !important;
+    z-index: 100;
+    height: 100vh;
+  }
+
+  .app-content-layout {
+    margin-left: 80px !important;
+  }
+
+  .logo-text {
+    display: none;
+  }
+}

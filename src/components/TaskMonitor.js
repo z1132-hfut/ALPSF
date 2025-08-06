@@ -126,16 +126,40 @@ const TaskMonitor = ({ tasks, updateTask, showNotification }) => {
   return (
     <Card
       title="后台任务监控"
-      extra={<Button icon={<SyncOutlined />} onClick={checkTasksStatus}>手动刷新</Button>}
+      extra={<Button 
+        icon={<SyncOutlined />} 
+        onClick={checkTasksStatus}
+        className="refresh-button"
+      >手动刷新</Button>}
       loading={loading}
+      headStyle={{ 
+        background: 'linear-gradient(90deg, #1890ff, #096dd9)',
+        color: 'white',
+        borderRadius: '8px 8px 0 0'
+      }}
+      bodyStyle={{ padding: '16px 24px' }}
+      style={{ 
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        transition: 'all 0.3s ease'
+      }}
     >
       {tasks.length === 0 ? (
-        <Empty description="暂无进行中的任务" />
+        <Empty description="暂无进行中的任务" imageStyle={{ height: 60 }} />
       ) : (
         <List
           dataSource={tasks}
           renderItem={(task) => (
-            <List.Item>
+            <List.Item
+              style={{
+                padding: '16px',
+                margin: '8px 0',
+                background: '#fafafa',
+                borderRadius: '6px',
+                transition: 'all 0.3s ease',
+                ':hover': { boxShadow: '0 2px 8px rgba(24, 144, 255, 0.2)' }
+              }}
+            >
               <List.Item.Meta
                 avatar={
                   <Badge
@@ -159,9 +183,11 @@ const TaskMonitor = ({ tasks, updateTask, showNotification }) => {
                   <>
                     <div>任务ID: {task.task_id}</div>
                     <div>状态: {getStatusTag(task.status)} {task.status === 'processing' && (
-                      <Progress percent={Math.min(100, ((pollingCounts[task.task_id] || 0) / MAX_POLLING_ATTEMPTS * 100))}
+                      <Progress 
+                        percent={Math.min(100, ((pollingCounts[task.task_id] || 0) / MAX_POLLING_ATTEMPTS * 100))}
                         size="small"
                         status="active"
+                        strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
                         style={{ width: 200, display: 'inline-block', marginLeft: 10 }}
                       />
                     )}</div>

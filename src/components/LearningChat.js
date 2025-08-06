@@ -9,14 +9,14 @@ import {
   Divider,
   Spin,
   message,
-  Form // 添加Form导入
+  Form
 } from 'antd';
 import { UserOutlined, RobotOutlined } from '@ant-design/icons';
 import { streamChat } from '../services/api';
 
 const { TextArea } = Input;
 const { Option } = Select;
-const { Item } = Form; // 获取Form.Item的快捷方式
+const { Item } = Form;
 
 const LearningChat = ({ showNotification }) => {
   const [messages, setMessages] = useState([]);
@@ -25,15 +25,7 @@ const LearningChat = ({ showNotification }) => {
   const [contextLevel, setContextLevel] = useState('level1');
   const [contextId, setContextId] = useState(null);
   const messagesEndRef = useRef(null);
-  const [form] = Form.useForm(); // 初始化表单实例
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const [form] = Form.useForm();
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -49,7 +41,6 @@ const LearningChat = ({ showNotification }) => {
     setLoading(true);
 
     try {
-      // 添加临时消息占位
       setMessages(prev => [...prev, {
         content: '...',
         sender: 'bot',
@@ -57,10 +48,8 @@ const LearningChat = ({ showNotification }) => {
         isStreaming: true
       }]);
 
-      // 这里需要根据实际的streamChat实现调整
       const response = await streamChat(inputValue, contextLevel, contextId);
 
-      // 假设streamChat返回完整响应（实际可能是流式）
       setMessages(prev => {
         const last = prev[prev.length - 1];
         if (last.isStreaming) {
@@ -86,26 +75,44 @@ const LearningChat = ({ showNotification }) => {
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto' }}>
+    <div style={{
+      maxWidth: 1200,
+      margin: '0 auto',
+      backgroundColor: '#ffffff',
+      minHeight: '100vh',
+      padding: '20px'
+    }}>
       <Card
-        title="AI学习导师"
-        extra={
-          <Select
-            defaultValue="level1"
-            style={{ width: 120 }}
-            onChange={setContextLevel}
-          >
-            <Option value="level1">Level 1 上下文</Option>
-            <Option value="level2">Level 2 上下文</Option>
-          </Select>
-        }
+        title={<span style={{
+        fontSize: '22px',
+        fontWeight: 'bold',
+        color: '#1890ff',
+        textShadow: '1px 1px 2px rgba(0, 0, 0, 0.1)',
+        fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif'
+        }}>AI学习导师</span>}
+        headStyle={{
+          height: 35,
+          // background: '#92ffe2',
+          borderBottom: '1px solid #f0f0f0',
+          padding: '0 24px',
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12
+        }}
+        style={{
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          borderRadius: '8px'
+        }}
+      ></Card>
+
+      <Card
+        style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
       >
         <div style={{ height: 500, overflowY: 'auto', marginBottom: 16 }}>
           <List
             dataSource={messages}
             renderItem={(item) => (
               <List.Item style={{
-                padding: '12px 0',
+                padding: '8px 0',
                 justifyContent: item.sender === 'user' ? 'flex-end' : 'flex-start'
               }}>
                 <div style={{
@@ -117,15 +124,20 @@ const LearningChat = ({ showNotification }) => {
                   <Avatar
                     icon={item.sender === 'user' ? <UserOutlined /> : <RobotOutlined />}
                     style={{
-                      backgroundColor: item.sender === 'user' ? '#a9d2ff' : '#2a97ff'
+                      backgroundColor: item.sender === 'user' ? '#2a97ff' : '#00b4b4',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
                     }}
                   />
                   <div style={{
                     maxWidth: '70%',
-                    backgroundColor: item.sender === 'user' ? '#e6f7ff' : '#f6ffed',
-                    padding: '8px 12px',
-                    borderRadius: 4,
-                    color: item.isError ? '#000000' : 'inherit'
+                    background: item.sender === 'user'
+                      ? 'linear-gradient(135deg, #2a97ff, #0066cc)'
+                      : 'linear-gradient(135deg, #00b4b4, #008080)',
+                    color: 'white',
+                    padding: '12px 16px',
+                    borderRadius: item.sender === 'user' ? '18px 4px 18px 18px' : '4px 18px 18px 18px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s'
                   }}>
                     {item.content}
                   </div>
@@ -176,12 +188,7 @@ const LearningChat = ({ showNotification }) => {
         </Form>
 
         <Divider />
-        <div>
-          <h4>示例问题:</h4>
-          <p>- "请解释Python中的列表和元组的区别"</p>
-          <p>- "机器学习中的监督学习和无监督学习有什么不同?"</p>
-          <p>- "世界历史中的工业革命有哪些重要影响?"</p>
-        </div>
+
       </Card>
     </div>
   );
